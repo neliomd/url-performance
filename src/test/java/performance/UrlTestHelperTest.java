@@ -1,5 +1,7 @@
 package performance;
 
+import static org.junit.Assert.assertTrue;
+
 import java.io.IOException;
 import java.net.URL;
 import java.net.UnknownHostException;
@@ -19,28 +21,28 @@ public class UrlTestHelperTest {
 	public void testHTTP200() throws Exception {
 		URL url = new URL("https://api-dev-01.emcconnected.com/testapi/US/area");
 		UrlTestResults results = urlTestHelper.test(url);
-		assert(results.getHttpResponseHeaders().startsWith("HTTP/1.1 200") && results.getHttpBodySize()==39);
+		assertTrue(results.getHttpResponseHeaders().startsWith("HTTP/1.1 200") && results.getHttpBodySize()==39);
 	}
 	
 	@Test
 	public void testHTTP404() throws Exception {
 		URL url = new URL("https://api-dev-01.emcconnected.com/invalid-file");
 		UrlTestResults results = urlTestHelper.test(url);
-		assert(results.getHttpResponseHeaders().startsWith("HTTP/1.1 404"));
+		assertTrue(results.getHttpResponseHeaders().startsWith("HTTP/1.1 404"));
 	}
 
 	@Test
 	public void testServerAddress() throws Exception {
 		URL url = new URL("https://api-qa-01.emcconnected.com/waittests/?wait=1");
 		UrlTestResults results = urlTestHelper.test(url);
-		assert("50.19.195.96".equals(results.getServerAddress()));
+		assertTrue("50.19.195.96".equals(results.getServerAddress()));
 	}
 	
 	@Test
 	public void testHTTPContentType() throws Exception {
 		URL url = new URL("https://api-qa-01.emcconnected.com/static/test.txt");
 		UrlTestResults results = urlTestHelper.test(url);
-		assert(results.getHttpResponseHeaders().contains("text/plain"));
+		assertTrue(results.getHttpResponseHeaders().contains("text/plain"));
 		
 	}
 	
@@ -49,7 +51,7 @@ public class UrlTestHelperTest {
 		int size = (int)(Math.random()*1000);
 		URL url = new URL("https://api-qa-01.emcconnected.com/waittests/?wait=1-"+size+"&responseBodyType=fixed");
 		UrlTestResults results = urlTestHelper.test(url);
-		assert(results.getHttpBodySize()==size);
+		assertTrue(results.getHttpBodySize()==size);
 		
 	}
 	
@@ -58,7 +60,7 @@ public class UrlTestHelperTest {
 		int delay = (int)(Math.random()*5) + 1; //1-5 secs
 		URL url = new URL("https://api-qa-01.emcconnected.com/waittests/?wait="+delay+"-100&responseBodyType=fixed");
 		UrlTestResults results = urlTestHelper.test(url);
-		assert(results.getHttpBodyTime()>=delay*1000); //roundtrip is expressed in ms
+		assertTrue(results.getHttpBodyTime()>=delay*1000); //roundtrip is expressed in ms
 		
 	}
 	
