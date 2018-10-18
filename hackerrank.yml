@@ -3,13 +3,13 @@ version: 1.0
 configuration:
   has_webserver: false
   scoring:
-    command: "mkdir -p /home/ubuntu/fullstack/project/url-performance/target/surefire-reports; cd /home/ubuntu/fullstack/project/url-performance; mvn clean test -Dtest=UnitTestSuite; cd target/surefire-reports; cat *.xml >> unit.xml"
+    command: "mkdir -p /home/ubuntu/fullstack/project/target/surefire-reports; cd /home/ubuntu/fullstack/project; mvn clean test -Dtest=UnitTestSuite; cd target/surefire-reports; cat *.xml >> unit.xml"
     files:
-      - "url-performance/target/surefire-reports/unit.xml"
+      - "target/surefire-reports/unit.xml"
   ide_config:
     default_open_files:
-      - url-performance/src/main/java/performance/UrlTestHelper.java
+      - src/main/java/performance/UrlTestHelper.java
     project_menu:
-      run: cd /home/ubuntu/fullstack/project/url-performance; mvn clean install
-      install: cd /home/ubuntu/fullstack/project/url-performance; mvn clean
-      test: cd /home/ubuntu/fullstack/project/url-performance; mvn clean test -Dtest=UnitTestSuite
+      run: cd /home/ubuntu/fullstack/project; mvn clean install
+      install: cd /home/ubuntu/fullstack/project; mvn clean
+      test: cd /home/ubuntu/fullstack/project; mvn clean test -Dtest=UnitTestSuite
