@@ -18,6 +18,7 @@ public class UrlTestResults implements Serializable {
 	private long roundtripTime;
 	private long httpBodyTime;
 	private long httpBodySize;
+	private String httpResponseStatus;
 	private String httpResponseHeaders;
 	
 	
@@ -76,10 +77,16 @@ public class UrlTestResults implements Serializable {
 	public void setServerAddress(String serverAddress) {
 		this.serverAddress = serverAddress;
 	}
+	public String getHttpResponseStatus() {
+		return httpResponseStatus;
+	}
+	public void setHttpResponseStatus(String httpResponseStatus) {
+		this.httpResponseStatus = httpResponseStatus;
+	}
 	@Override
 	public String toString() {
-		return String.format("%s\n%s\ndnsLookupTime: %dms\nconnectionTime: %dms\nsslHandshakingTime: %dms\nroundtripTime: %dms\nhttpBodyTime: %dms\nhttpBodySize: %d bytes", 
-				url, httpResponseHeaders, dnsLookupTime, connectionTime, sslHandshakingTime, roundtripTime, httpBodyTime, httpBodySize);
+		return String.format("%s\n%s\n%s\ndnsLookupTime: %dms\nconnectionTime: %dms\nsslHandshakingTime: %dms\nroundtripTime: %dms\nhttpBodyTime: %dms\nhttpBodySize: %d bytes", 
+				url, httpResponseStatus, httpResponseHeaders, dnsLookupTime, connectionTime, sslHandshakingTime, roundtripTime, httpBodyTime, httpBodySize);
 	}
 	
 	
