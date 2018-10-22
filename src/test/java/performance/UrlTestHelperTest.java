@@ -22,7 +22,7 @@ public class UrlTestHelperTest {
 		System.out.println("Running testHTTP200()");
 		URL url = new URL("https://api-dev-01.emcconnected.com/testapi/US/area");
 		UrlTestResults results = urlTestHelper.test(url);
-		assertTrue(results.getHttpResponseStatus().startsWith("HTTP/1.1 200") && results.getHttpBodySize()==39);
+		assertTrue(results.getHttpResponseStatus().contains("200") && results.getHttpBodySize()==39);
 	}
 	
 	@Test
@@ -30,7 +30,7 @@ public class UrlTestHelperTest {
 		System.out.println("Running testHTTP404()");
 		URL url = new URL("https://api-dev-01.emcconnected.com/invalid-file");
 		UrlTestResults results = urlTestHelper.test(url);
-		assertTrue(results.getHttpResponseStatus().startsWith("HTTP/1.1 404"));
+		assertTrue(results.getHttpResponseStatus().contains("404"));
 	}
 
 	@Test
